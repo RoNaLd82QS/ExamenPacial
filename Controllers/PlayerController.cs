@@ -27,11 +27,6 @@ namespace EquiposPeruanos.Controllers
             return View(jugadores);
         }
 
-      public IActionResult Create()
-{
-    return View();
-}
-
 [HttpPost]
 public IActionResult Create(Player player)
 {
