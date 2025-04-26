@@ -27,22 +27,22 @@ namespace EquiposPeruanos.Controllers
             return View(jugadores);
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
+      public IActionResult Create()
+{
+    return View();
+}
 
-        [HttpPost]
-        public IActionResult Create(Player player)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Players.Add(player);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(player);
-        }
+[HttpPost]
+public IActionResult Create(Player player)
+{
+    if (ModelState.IsValid)
+    {
+        _context.Players.Add(player);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+    return View(player);
+}
 
         public async Task<IActionResult> Edit(int? id)
         {
