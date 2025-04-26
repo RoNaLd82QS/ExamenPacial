@@ -1,21 +1,27 @@
 # --- Etapa 1: Construcción del proyecto ---
+# --- Etapa 1: Build ---
     FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
     WORKDIR /app
     
+    # Copiar archivos
     COPY *.sln .
-    COPY equiposPeruanos/*.csproj ./equiposPeruanos/
+    COPY *.csproj .
+    COPY . .
+    
+    # Restaurar dependencias
     RUN dotnet restore
     
-    COPY . .
-    WORKDIR /app/equiposPeruanos
+    # Publicar la app
     RUN dotnet publish -c Release -o /out
     
     # --- Etapa 2: Imagen final ---
-    FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+    FROM mcr.microsoft.com/dotnet/aspnet:8.0
     WORKDIR /app
     COPY --from=build /out .
     
-    EXPOSE 80
+    # Exponer el puerto (Render asigna dinámicamente)
+    ENV ASPNETCORE_URLS=http://+:10000
+    EXPOSE 10000
     
     ENTRYPOINT ["dotnet", "equiposPeruanos.dll"]
     
