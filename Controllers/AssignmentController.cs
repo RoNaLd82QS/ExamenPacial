@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EquiposPeruanos.Data;
 using EquiposPeruanos.Models;
@@ -15,38 +14,36 @@ namespace EquiposPeruanos.Controllers
             _context = context;
         }
 
-        // GET: Assignment
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var assignments = await _context.Assignments
+            var asignaciones = _context.Assignments
                 .Include(a => a.Player)
                 .Include(a => a.Team)
-                .ToListAsync();
-            return View(assignments);
+                .ToList();
+            return View(asignaciones);
         }
 
-        // GET: Assignment/Create
         public IActionResult Create()
         {
-            ViewData["PlayerId"] = new SelectList(_context.Players, "Id", "Nombre");
-            ViewData["TeamId"] = new SelectList(_context.Teams, "Id", "Nombre");
+            ViewBag.Players = _context.Players.ToList();
+            ViewBag.Teams = _context.Teams.ToList();
             return View();
         }
 
-        // POST: Assignment/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Assignment assignment)
+        public IActionResult Create(Assignment assignment)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(assignment);
-                await _context.SaveChangesAsync();
+                _context.Assignments.Add(assignment);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PlayerId"] = new SelectList(_context.Players, "Id", "Nombre", assignment.PlayerId);
-            ViewData["TeamId"] = new SelectList(_context.Teams, "Id", "Nombre", assignment.TeamId);
+
+            ViewBag.Players = _context.Players.ToList();
+            ViewBag.Teams = _context.Teams.ToList();
             return View(assignment);
         }
     }
 }
+
