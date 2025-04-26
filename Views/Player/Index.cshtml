@@ -1,0 +1,56 @@
+@model IEnumerable<EquiposPeruanos.Models.Player>
+
+@{
+    ViewData["Title"] = "Lista de Jugadores";
+    var assignments = ViewBag.Assignments as List<EquiposPeruanos.Models.Assignment>;
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Lista de Jugadores</h2>
+
+    <div class="text-end mb-3">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Nuevo Jugador
+        </a>
+    </div>
+
+    <table class="table table-hover table-bordered shadow-sm">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Posición</th>
+                <th>Equipo Asignado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-center align-middle">
+            @foreach (var jugador in Model)
+            {
+                string nombreEquipo = "Sin Asignar";
+
+                var asignacion = assignments?.FirstOrDefault(a => a.PlayerId == jugador.Id);
+                if (asignacion?.Team != null)
+                {
+                    nombreEquipo = asignacion.Team.Nombre;
+                }
+
+                <tr>
+                    <td>@jugador.Nombre</td>
+                    <td>@jugador.Edad</td>
+                    <td>@jugador.Posicion</td>
+                    <td>@nombreEquipo</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@jugador.Id" class="btn btn-sm btn-primary me-2">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@jugador.Id" class="btn btn-sm btn-danger"
+                           onclick="return confirm('¿Seguro que deseas eliminar este jugador?');">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

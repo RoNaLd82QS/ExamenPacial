@@ -1,0 +1,24 @@
+@model IEnumerable<EquiposPeruanos.Models.Assignment>
+
+<h2>Lista de Jugadores Asignados a Equipos</h2>
+
+<a asp-action="Create" class="btn btn-success">Nueva Asignación</a>
+<br /><br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Jugador</th>
+            <th>Equipo</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Player?.Nombre</td>
+            <td>@item.Team?.Nombre</td>
+        </tr>
+    }
+    </tbody>
+</table>
