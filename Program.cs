@@ -3,21 +3,24 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar puerto dinámico (usado por Render)
+// Configurar puerto dinámico (Render)
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 builder.WebHost.UseUrls($"http://*:{port}");
 
-// Agregar servicios al contenedor
+// Agregar servicios
 builder.Services.AddControllersWithViews();
 
-// Configurar DbContext con PostgreSQL
+// Configurar cadena de conexión
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection") 
+    ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(Environment.GetEnvironmentVariable("DefaultConnection"))
+    options.UseNpgsql(connectionString)
 );
 
 var app = builder.Build();
 
-// Configuración del middleware HTTP
+// Configurar Middleware HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -30,7 +33,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
-// Ruta por defecto: controlador Player, acción Index
+// Rutas por defecto
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Player}/{action=Index}/{id?}");

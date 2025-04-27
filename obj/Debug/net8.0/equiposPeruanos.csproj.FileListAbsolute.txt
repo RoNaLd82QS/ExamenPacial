@@ -252,3 +252,9 @@ C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\ru\Microso
 C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\publish\web.config
+C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\publish\appsettings.Development.json
+C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\publish\appsettings.json
+C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\publish\equiposPeruanos.deps.json
+C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\bin\Debug\net8.0\publish\equiposPeruanos.runtimeconfig.json
+C:\Users\RONALD\Desktop\Programacion\equiposPeruanos\obj\Debug\net8.0\equiposPeruanos.sourcelink.json

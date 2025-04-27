@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("equiposPeruanos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0d9d90843f3ab1b1b24bed9e5470c10a3850673")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e43195844425c2c3785917319443ac8ffa7cf66e")]
 [assembly: System.Reflection.AssemblyProductAttribute("equiposPeruanos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("equiposPeruanos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
